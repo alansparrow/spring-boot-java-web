@@ -1,6 +1,6 @@
 package com.fuzzyrock.springcoredemo.rest;
 
-import com.fuzzyrock.util.Coach;
+import com.fuzzyrock.springcoredemo.common.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
