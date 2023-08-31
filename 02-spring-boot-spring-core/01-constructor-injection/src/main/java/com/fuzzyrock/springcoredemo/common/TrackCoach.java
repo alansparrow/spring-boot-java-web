@@ -1,0 +1,11 @@
+package com.fuzzyrock.springcoredemo.common;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class TrackCoach implements Coach {
+    @Override
+    public String getDailyWorkout() {
+        return "Practice run for 10 minutes.";
+    }
+}

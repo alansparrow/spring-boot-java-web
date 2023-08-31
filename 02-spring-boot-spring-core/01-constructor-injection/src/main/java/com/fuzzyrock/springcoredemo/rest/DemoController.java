@@ -2,6 +2,7 @@ package com.fuzzyrock.springcoredemo.rest;
 
 import com.fuzzyrock.springcoredemo.common.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +14,7 @@ public class DemoController {
     // Define a constructor for dependency injection
     // @Autowired annotation tells Spring to inject a dependency
     @Autowired
-    public DemoController(Coach theCoach) {
+    public DemoController(@Qualifier("trackCoach") Coach theCoach) {
         myCoach = theCoach;
     }
 
