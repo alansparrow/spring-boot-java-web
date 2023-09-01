@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class SportConfig {
 
     // Method's name is used in @Qualifier
-    @Bean
+    @Bean("aquatic")
     public Coach swimCoach() {
         return new SwimCoach();
     }
