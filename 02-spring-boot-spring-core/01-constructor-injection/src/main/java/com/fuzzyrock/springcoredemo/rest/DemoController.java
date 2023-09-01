@@ -15,6 +15,7 @@ public class DemoController {
     // @Autowired annotation tells Spring to inject a dependency
     @Autowired
     public DemoController(Coach theCoach) {
+        System.out.println("Initialize " + getClass().getSimpleName());
         myCoach = theCoach;
     }
 
