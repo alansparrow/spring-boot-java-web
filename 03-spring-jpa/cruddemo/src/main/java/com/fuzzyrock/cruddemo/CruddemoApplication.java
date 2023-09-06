@@ -23,8 +23,17 @@ public class CruddemoApplication {
 //            createStudent(studentDAO);
 //            createStudents(studentDAO);
 //            readStudent(studentDAO);
-            queryForStudents(studentDAO);
+//            queryForStudents(studentDAO);
+            queryForStudentsByLastName(studentDAO);
         };
+    }
+
+    private void queryForStudentsByLastName(StudentDAO studentDAO) {
+        List<Student> students = studentDAO.findByLastName("Lovegood");
+
+        for (Student student : students) {
+            System.out.println(student);
+        }
     }
 
     private void queryForStudents(StudentDAO studentDAO) {
@@ -47,7 +56,7 @@ public class CruddemoApplication {
         for (int i = 0; i < 3; i++) {
             // Create the student object
             System.out.println("Creating a new student object...");
-            Student student = new Student("Alan" + i, "Sparrow", "alan" + i + "@gmail.com");
+            Student student = new Student("Luna" + i, "Lovegood", "alan" + i + "@gmail.com");
 
             // Save the student object
             System.out.println("Saving new student...");
