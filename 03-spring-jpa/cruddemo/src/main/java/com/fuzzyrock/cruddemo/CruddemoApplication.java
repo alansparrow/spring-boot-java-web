@@ -19,8 +19,17 @@ public class CruddemoApplication {
     public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
         return runner -> {
 //            createStudent(studentDAO);
-            createStudents(studentDAO);
+//            createStudents(studentDAO);
+            readStudent(studentDAO);
         };
+    }
+
+    private void readStudent(StudentDAO studentDAO) {
+        Integer studentId = createStudent(studentDAO);
+
+        Student student = studentDAO.findById(studentId);
+
+        System.out.println("Found the student: " + student);
     }
 
     private void createStudents(StudentDAO studentDAO) {
@@ -38,7 +47,7 @@ public class CruddemoApplication {
         }
     }
 
-    private void createStudent(StudentDAO studentDAO) {
+    private Integer createStudent(StudentDAO studentDAO) {
         // Create the student object
         System.out.println("Creating a new student object...");
         Student student = new Student("Alan", "Sparrow", "alan@gmail.com");
@@ -49,6 +58,8 @@ public class CruddemoApplication {
 
         // Display id of the saved student
         System.out.println("Saved student. Generated id: " + student.getId());
+
+        return student.getId();
     }
 
 }
