@@ -1,6 +1,7 @@
 package com.fuzzyrock.cruddemo2;
 
 import com.fuzzyrock.cruddemo2.daos.AppDAO;
+import com.fuzzyrock.cruddemo2.entities.Course;
 import com.fuzzyrock.cruddemo2.entities.Instructor;
 import com.fuzzyrock.cruddemo2.entities.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -23,8 +24,26 @@ public class Cruddemo2Application {
       //      findInstructor(appDAO);
       //      deleteInstructor(appDAO);
       //      findInstructorDetail(appDAO);
-      deleteInstructorDetail(appDAO);
+      //      deleteInstructorDetail(appDAO);
+      createInstructorWithCourses(appDAO);
     };
+  }
+
+  private void createInstructorWithCourses(AppDAO appDAO) {
+    Instructor instructor = new Instructor("Susan", "Rock", "susan@gmail.com");
+    InstructorDetail instructorDetail = new InstructorDetail("http://youtube.com", "Mafia");
+
+    instructor.setInstructorDetail(instructorDetail);
+
+    Course course1 = new Course("Maths");
+    Course course2 = new Course("Chemistry");
+    instructor.add(course1);
+    instructor.add(course2);
+
+    System.out.println("Saving instructor: " + instructor);
+    System.out.println("Courses: " + instructor.getCourseList());
+    appDAO.save(instructor);
+    System.out.println("Done!");
   }
 
   private void deleteInstructorDetail(AppDAO appDAO) {
