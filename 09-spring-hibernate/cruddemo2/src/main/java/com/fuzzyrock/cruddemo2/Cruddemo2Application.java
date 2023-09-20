@@ -4,6 +4,7 @@ import com.fuzzyrock.cruddemo2.daos.AppDAO;
 import com.fuzzyrock.cruddemo2.entities.Course;
 import com.fuzzyrock.cruddemo2.entities.Instructor;
 import com.fuzzyrock.cruddemo2.entities.InstructorDetail;
+import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,8 +27,23 @@ public class Cruddemo2Application {
       //      findInstructorDetail(appDAO);
       //      deleteInstructorDetail(appDAO);
       //      createInstructorWithCourses(appDAO);
-      findInstructorWithCourses(appDAO);
+      //      findInstructorWithCourses(appDAO);
+      findCoursesForInstructor(appDAO);
     };
+  }
+
+  private void findCoursesForInstructor(AppDAO appDAO) {
+    int id = 1;
+
+    System.out.println("Finding instructor with id: " + id);
+    Instructor instructor = appDAO.findInstructorById(id);
+    System.out.println("Instructor: " + instructor);
+
+    System.out.println("Finding courses for instructor with id: " + id);
+    List<Course> courseList = appDAO.findCoursesByInstructorId(id);
+    System.out.println("Associated courses: " + courseList);
+
+    System.out.println("Done!");
   }
 
   private void findInstructorWithCourses(AppDAO appDAO) {

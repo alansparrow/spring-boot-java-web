@@ -1,7 +1,10 @@
 package com.fuzzyrock.cruddemo2.daos;
 
+import com.fuzzyrock.cruddemo2.entities.Course;
 import com.fuzzyrock.cruddemo2.entities.Instructor;
 import com.fuzzyrock.cruddemo2.entities.InstructorDetail;
+
+import java.util.List;
 
 public interface AppDAO {
   void save(Instructor instructor);
@@ -13,4 +16,6 @@ public interface AppDAO {
   InstructorDetail findInstructorDetailById(int id);
 
   void deleteInstructorDetailById(int id);
+
+  List<Course> findCoursesByInstructorId(int id);
 }
