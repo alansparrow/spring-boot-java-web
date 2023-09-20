@@ -1,6 +1,7 @@
 package com.fuzzyrock.cruddemo2.daos;
 
 import com.fuzzyrock.cruddemo2.entities.Instructor;
+import com.fuzzyrock.cruddemo2.entities.InstructorDetail;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -33,5 +34,10 @@ public class AppDAOImpl implements AppDAO {
     Instructor instructor = entityManager.find(Instructor.class, id);
 
     entityManager.remove(instructor);
+  }
+
+  @Override
+  public InstructorDetail findInstructorDetailById(int id) {
+    return entityManager.find(InstructorDetail.class, id);
   }
 }

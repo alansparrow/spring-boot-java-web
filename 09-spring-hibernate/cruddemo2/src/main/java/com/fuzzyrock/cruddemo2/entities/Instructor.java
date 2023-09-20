@@ -20,8 +20,6 @@ public class Instructor {
   @Column(name = "email")
   private String email;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "instructor_detail_id")
   // instructor_detail_id defined in instructor table
   // In DB, foreign key is configured to reference id field in instructor_detail table
   //  `instructor_detail_id` int DEFAULT NULL,
@@ -29,6 +27,8 @@ public class Instructor {
   //  KEY `FK_DETAIL_idx` (`instructor_detail_id`),
   //  CONSTRAINT `FK_DETAIL` FOREIGN KEY (`instructor_detail_id`) REFERENCES `instructor_detail`
   // (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "instructor_detail_id")
   private InstructorDetail instructorDetail;
 
   public Instructor() {}
