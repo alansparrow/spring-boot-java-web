@@ -3,8 +3,10 @@ package com.fuzzyrock.cruddemo2.daos;
 import com.fuzzyrock.cruddemo2.entities.Instructor;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+@Repository
 public class AppDAOImpl implements AppDAO {
 
   private EntityManager entityManager;
