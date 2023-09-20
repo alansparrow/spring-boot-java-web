@@ -19,7 +19,7 @@ public class Cruddemo2Application {
   // With @Bean, the deps will be injected automatically, no need for @Autowired
   public CommandLineRunner commandLineRunner(AppDAO appDAO) {
     return runner -> {
-      //      createInstructor(appDAO);
+      //            createInstructor(appDAO);
       //      findInstructor(appDAO);
       //      deleteInstructor(appDAO);
       //      findInstructorDetail(appDAO);
@@ -28,7 +28,7 @@ public class Cruddemo2Application {
   }
 
   private void deleteInstructorDetail(AppDAO appDAO) {
-    int id = 3;
+    int id = 4;
     System.out.println("Deleting instructor detail with id: " + id);
 
     appDAO.deleteInstructorDetailById(id);
