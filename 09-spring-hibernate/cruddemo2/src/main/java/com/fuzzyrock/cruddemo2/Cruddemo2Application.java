@@ -35,8 +35,20 @@ public class Cruddemo2Application {
       //      updateCourse(appDAO);
       //      deleteCourse(appDAO);
       //      createCourseAndReviews(appDAO);
-      retrieveCourseWithReviews(appDAO);
+      //      retrieveCourseWithReviews(appDAO);
+      deleteCourseWithReviews(appDAO);
     };
+  }
+
+  private void deleteCourseWithReviews(AppDAO appDAO) {
+    int id = 10;
+
+    System.out.println("Deleting course id: " + id);
+
+    // This will also delete associated reviews thanks to CascadeType.ALL
+    appDAO.deleteCourseById(id);
+
+    System.out.println("Done!");
   }
 
   private void retrieveCourseWithReviews(AppDAO appDAO) {
