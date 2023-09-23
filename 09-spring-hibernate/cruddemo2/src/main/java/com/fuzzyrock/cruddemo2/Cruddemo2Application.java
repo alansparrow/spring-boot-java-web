@@ -4,6 +4,7 @@ import com.fuzzyrock.cruddemo2.daos.AppDAO;
 import com.fuzzyrock.cruddemo2.entities.Course;
 import com.fuzzyrock.cruddemo2.entities.Instructor;
 import com.fuzzyrock.cruddemo2.entities.InstructorDetail;
+import com.fuzzyrock.cruddemo2.entities.Review;
 import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -32,8 +33,25 @@ public class Cruddemo2Application {
       //      findInstructorWithCoursesJoinFetch(appDAO);
       //      updateInstructor(appDAO);
       //      updateCourse(appDAO);
-      deleteCourse(appDAO);
+      //      deleteCourse(appDAO);
+      createCourseAndReviews(appDAO);
     };
+  }
+
+  private void createCourseAndReviews(AppDAO appDAO) {
+    Course course = new Course("Batman - The Dark Knight");
+
+    course.addReview(new Review("Great course!"));
+    course.addReview(new Review("Epic!"));
+    course.addReview(new Review("It's just.. so so :<"));
+
+    System.out.println("Saving the course..");
+    System.out.println(course);
+    System.out.println(course.getReviews());
+
+    appDAO.save(course);
+
+    System.out.println("Done!");
   }
 
   private void deleteCourse(AppDAO appDAO) {
