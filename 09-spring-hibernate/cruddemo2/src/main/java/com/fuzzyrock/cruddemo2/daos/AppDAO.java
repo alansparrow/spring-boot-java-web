@@ -40,4 +40,6 @@ public interface AppDAO {
 
   void update(Student student);
 
+  void deleteById(int id);
+
 }
