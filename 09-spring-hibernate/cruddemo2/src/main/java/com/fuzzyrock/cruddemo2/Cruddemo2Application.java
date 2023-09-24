@@ -36,8 +36,26 @@ public class Cruddemo2Application {
       //      deleteCourseWithReviews(appDAO);
       //      createCourseAndStudents(appDAO);
       //      findCourseWithStudents(appDAO);
-      findStudentWithCourses(appDAO);
+      //      findStudentWithCourses(appDAO);
+      addMoreCoursesForStudent(appDAO);
     };
+  }
+
+  private void addMoreCoursesForStudent(AppDAO appDAO) {
+    int id = 2;
+    Student student = appDAO.findStudentWithCoursesByStudentId(id);
+
+    Course course1 = new Course("Chemistry");
+    Course course2 = new Course("Physics");
+
+    student.addCourse(course1);
+    student.addCourse(course2);
+
+    System.out.println("Updating student: " + student);
+    System.out.println("Associated courses: " + student.getCourses());
+    appDAO.update(student);
+
+    System.out.println("Done!");
   }
 
   private void findStudentWithCourses(AppDAO appDAO) {
