@@ -3,6 +3,7 @@ package com.fuzzyrock.cruddemo2.daos;
 import com.fuzzyrock.cruddemo2.entities.Course;
 import com.fuzzyrock.cruddemo2.entities.Instructor;
 import com.fuzzyrock.cruddemo2.entities.InstructorDetail;
+import com.fuzzyrock.cruddemo2.entities.Student;
 
 import java.util.List;
 
@@ -34,5 +35,7 @@ public interface AppDAO {
   Course findCourseWithReviewsByCourseId(int id);
 
   Course findCourseWithStudentsByCourseId(int id);
+
+  Student findStudentWithCoursesByStudentId(int id);
 
 }

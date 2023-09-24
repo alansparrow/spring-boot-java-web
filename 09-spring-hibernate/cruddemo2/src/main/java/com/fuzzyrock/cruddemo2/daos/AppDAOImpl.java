@@ -3,6 +3,7 @@ package com.fuzzyrock.cruddemo2.daos;
 import com.fuzzyrock.cruddemo2.entities.Course;
 import com.fuzzyrock.cruddemo2.entities.Instructor;
 import com.fuzzyrock.cruddemo2.entities.InstructorDetail;
+import com.fuzzyrock.cruddemo2.entities.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import java.util.List;
@@ -143,5 +144,18 @@ public class AppDAOImpl implements AppDAO {
     Course course = query.getSingleResult();
 
     return course;
+  }
+
+  @Override
+  public Student findStudentWithCoursesByStudentId(int id) {
+    TypedQuery<Student> query =
+        entityManager.createQuery(
+            "select s from Student s " + "JOIN FETCH s.courses " + "where s.id = :data",
+            Student.class);
+    query.setParameter("data", id);
+
+    Student student = query.getSingleResult();
+
+    return student;
   }
 }
