@@ -1,10 +1,8 @@
 package com.fuzzyrock.cruddemo2;
 
 import com.fuzzyrock.cruddemo2.daos.AppDAO;
-import com.fuzzyrock.cruddemo2.entities.Course;
-import com.fuzzyrock.cruddemo2.entities.Instructor;
-import com.fuzzyrock.cruddemo2.entities.InstructorDetail;
-import com.fuzzyrock.cruddemo2.entities.Review;
+import com.fuzzyrock.cruddemo2.entities.*;
+
 import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -36,8 +34,26 @@ public class Cruddemo2Application {
       //      deleteCourse(appDAO);
       //      createCourseAndReviews(appDAO);
       //      retrieveCourseWithReviews(appDAO);
-      deleteCourseWithReviews(appDAO);
+      //      deleteCourseWithReviews(appDAO);
+      createCourseAndStudents(appDAO);
     };
+  }
+
+  private void createCourseAndStudents(AppDAO appDAO) {
+    Course course = new Course("Maths");
+
+    Student student1 = new Student("Moon", "Sparrow", "moon@gmail.com");
+    Student student2 = new Student("Butter", "Eagle", "butter@gmail.com");
+
+    course.addStudent(student1);
+    course.addStudent(student2);
+
+    System.out.println("Saving the course: " + course);
+    System.out.println("Associated students: " + course.getStudents());
+
+    appDAO.save(course);
+
+    System.out.println("Done!");
   }
 
   private void deleteCourseWithReviews(AppDAO appDAO) {
