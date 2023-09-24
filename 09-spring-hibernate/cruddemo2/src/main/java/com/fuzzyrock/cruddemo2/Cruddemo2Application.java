@@ -2,7 +2,6 @@ package com.fuzzyrock.cruddemo2;
 
 import com.fuzzyrock.cruddemo2.daos.AppDAO;
 import com.fuzzyrock.cruddemo2.entities.*;
-
 import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -35,8 +34,19 @@ public class Cruddemo2Application {
       //      createCourseAndReviews(appDAO);
       //      retrieveCourseWithReviews(appDAO);
       //      deleteCourseWithReviews(appDAO);
-      createCourseAndStudents(appDAO);
+      //      createCourseAndStudents(appDAO);
+      findCourseWithStudents(appDAO);
     };
+  }
+
+  private void findCourseWithStudents(AppDAO appDAO) {
+    int id = 10;
+    Course course = appDAO.findCourseWithStudentsByCourseId(id);
+
+    System.out.println("Loaded course: " + course);
+    System.out.println("Students: " + course.getStudents());
+
+    System.out.println("Done!");
   }
 
   private void createCourseAndStudents(AppDAO appDAO) {
