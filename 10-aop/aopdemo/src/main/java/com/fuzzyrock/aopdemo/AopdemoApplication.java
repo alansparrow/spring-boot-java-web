@@ -23,11 +23,11 @@ public class AopdemoApplication {
 
   private void demoTheBeforeAdvice(AccountDAO accountDAO, MembershipDAO membershipDAO) {
     accountDAO.addAccount();
-    membershipDAO.addAccount();
+    membershipDAO.addMember();
 
     System.out.println("Once more");
 
     accountDAO.addAccount();
-    membershipDAO.addAccount();
+    membershipDAO.addMember();
   }
 }
