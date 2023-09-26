@@ -1,5 +1,7 @@
 package com.fuzzyrock.aopdemo;
 
+import com.fuzzyrock.aopdemo.dao.AccountDAO;
+import com.fuzzyrock.aopdemo.dao.MembershipDAO;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,9 +15,19 @@ public class AopdemoApplication {
   }
 
   @Bean
-  public CommandLineRunner commandLineRunner(String[] args) {
+  public CommandLineRunner commandLineRunner(AccountDAO accountDAO, MembershipDAO membershipDAO) {
     return runner -> {
-      System.out.println("Hello World!");
+      demoTheBeforeAdvice(accountDAO, membershipDAO);
     };
+  }
+
+  private void demoTheBeforeAdvice(AccountDAO accountDAO, MembershipDAO membershipDAO) {
+    accountDAO.addAccount();
+    membershipDAO.addAccount();
+
+    System.out.println("Once more");
+
+    accountDAO.addAccount();
+    membershipDAO.addAccount();
   }
 }
