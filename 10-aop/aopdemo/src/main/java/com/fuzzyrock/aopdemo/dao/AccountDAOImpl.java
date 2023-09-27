@@ -10,4 +10,9 @@ public class AccountDAOImpl implements AccountDAO {
     System.out.println(getClass() + ": adding an account " + account + " isAdmin: " + isAdmin);
     return true;
   }
+
+  @Override
+  public void charge() {
+    System.out.println(getClass() + ": charge money");
+  }
 }

@@ -4,4 +4,6 @@ import com.fuzzyrock.aopdemo.Account;
 
 public interface AccountDAO {
     boolean addAccount(Account account, boolean isAdmin);
+
+    void charge();
 }
