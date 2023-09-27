@@ -16,6 +16,11 @@ public class MyDemoLoggingAspect {
   // Match any class in the package, any method, any params
   @Before("forDaoPackage()")
   public void beforeAddAccountAdvice() {
-    System.out.println("\n===> Executing @Before advice on addAccount()");
+    System.out.println("===> Executing @Before advice on addAccount()");
+  }
+
+  @Before("forDaoPackage()")
+  public void performApiAnalytics() {
+    System.out.println("===> Performing API analytics");
   }
 }
