@@ -1,7 +1,9 @@
 package com.fuzzyrock.aopdemo.aspect;
 
 import com.fuzzyrock.aopdemo.Account;
+import java.util.List;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -12,6 +14,16 @@ import org.springframework.stereotype.Component;
 @Component
 @Order(2)
 public class MyDemoLoggingAspect {
+
+  @AfterReturning(
+      pointcut = "execution(* com.fuzzyrock.aopdemo.dao.AccountDAO.findAccounts(..))",
+      returning = "result")
+  public void afterReturningFindAccountsAdvice(JoinPoint joinPoint, List<Account> result) {
+    String method = joinPoint.getSignature().toString();
+    System.out.println("Executing @AfterReturning on method: " + method);
+
+    System.out.println("result is: " + result);
+  }
 
   // @Before("execution(public void add*())")
   // Match any class in the package, any method, any params
