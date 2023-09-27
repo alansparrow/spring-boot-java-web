@@ -3,10 +3,7 @@ package com.fuzzyrock.aopdemo.aspect;
 import com.fuzzyrock.aopdemo.Account;
 import java.util.List;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -15,6 +12,12 @@ import org.springframework.stereotype.Component;
 @Component
 @Order(2)
 public class MyDemoLoggingAspect {
+
+  @After("execution(* com.fuzzyrock.aopdemo.dao.AccountDAO.findAccounts(..))")
+  public void afterFinallyFindAccountsAdvice(JoinPoint joinPoint) {
+    String method = joinPoint.getSignature().toString();
+    System.out.println("Executing @After (finally) on method: " + method);
+  }
 
   @AfterThrowing(
       pointcut = "execution(* com.fuzzyrock.aopdemo.dao.AccountDAO.findAccounts(..))",
