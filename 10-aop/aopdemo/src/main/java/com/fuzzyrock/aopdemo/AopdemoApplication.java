@@ -24,6 +24,10 @@ public class AopdemoApplication {
   private void demoTheBeforeAdvice(AccountDAO accountDAO, MembershipDAO membershipDAO) {
     accountDAO.addAccount(new Account("Fuzzy", "L9"), true);
     accountDAO.charge();
+    accountDAO.setName("foobar");
+    accountDAO.setServiceCode("diamond");
+    accountDAO.getName();
+    accountDAO.getServiceCode();
 
     membershipDAO.addMember();
     membershipDAO.doWork();
