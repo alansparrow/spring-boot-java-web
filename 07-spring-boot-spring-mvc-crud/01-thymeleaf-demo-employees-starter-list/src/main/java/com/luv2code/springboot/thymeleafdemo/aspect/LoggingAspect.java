@@ -2,6 +2,7 @@ package com.luv2code.springboot.thymeleafdemo.aspect;
 
 import java.util.logging.Logger;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -34,5 +35,13 @@ public class LoggingAspect {
     for (Object arg : args) {
       logger.info("arg: " + arg);
     }
+  }
+
+  @AfterReturning(pointcut = "forAppFlow()", returning = "result")
+  public void afterReturning(JoinPoint joinPoint, Object result) {
+    String method = joinPoint.getSignature().toString();
+    logger.info("in @AfterReturning: from method: " + method);
+
+    logger.info("result: " + result);
   }
 }
