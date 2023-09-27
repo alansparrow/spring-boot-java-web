@@ -28,5 +28,11 @@ public class LoggingAspect {
   public void before(JoinPoint joinPoint) {
     String method = joinPoint.getSignature().toString();
     logger.info("in @Before: calling method: " + method);
+
+    Object[] args = joinPoint.getArgs();
+
+    for (Object arg : args) {
+      logger.info("arg: " + arg);
+    }
   }
 }
