@@ -3,6 +3,7 @@ package com.fuzzyrock.aopdemo.aspect;
 import com.fuzzyrock.aopdemo.Account;
 import java.util.List;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
@@ -12,6 +13,23 @@ import org.springframework.stereotype.Component;
 @Component
 @Order(2)
 public class MyDemoLoggingAspect {
+
+  @Around("execution(* com.fuzzyrock.aopdemo.service.*.getFortune(..))")
+  public Object aroundGetFortune(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+    String method = proceedingJoinPoint.getSignature().toString();
+    System.out.println("Executing @Around on method: " + method);
+
+    long begin = System.currentTimeMillis();
+
+    Object result = proceedingJoinPoint.proceed();
+
+    long end = System.currentTimeMillis();
+
+    long duration = end - begin;
+    System.out.println("Duration: " + duration / 1000.0 + " seconds");
+
+    return result;
+  }
 
   @After("execution(* com.fuzzyrock.aopdemo.dao.AccountDAO.findAccounts(..))")
   public void afterFinallyFindAccountsAdvice(JoinPoint joinPoint) {
