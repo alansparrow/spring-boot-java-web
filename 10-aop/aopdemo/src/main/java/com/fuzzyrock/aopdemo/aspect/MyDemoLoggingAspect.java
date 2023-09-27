@@ -21,7 +21,13 @@ public class MyDemoLoggingAspect {
 
     long begin = System.currentTimeMillis();
 
-    Object result = proceedingJoinPoint.proceed();
+    Object result = null;
+    try {
+      result = proceedingJoinPoint.proceed();
+    } catch (Exception e) {
+      System.out.println("Swallowing exception: " + e);
+      result = "Major accident! But did not throw exception.";
+    }
 
     long end = System.currentTimeMillis();
 
