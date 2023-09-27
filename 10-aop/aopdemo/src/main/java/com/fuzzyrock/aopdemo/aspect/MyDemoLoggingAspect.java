@@ -4,6 +4,7 @@ import com.fuzzyrock.aopdemo.Account;
 import java.util.List;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -14,6 +15,15 @@ import org.springframework.stereotype.Component;
 @Component
 @Order(2)
 public class MyDemoLoggingAspect {
+
+  @AfterThrowing(
+      pointcut = "execution(* com.fuzzyrock.aopdemo.dao.AccountDAO.findAccounts(..))",
+      throwing = "ex")
+  public void afterReturningFindAccountsAdvice(JoinPoint joinPoint, Throwable ex) {
+    String method = joinPoint.getSignature().toString();
+    System.out.println("Executing @AfterThrowing on method: " + method);
+    System.out.println("Exception is: " + ex);
+  }
 
   @AfterReturning(
       pointcut = "execution(* com.fuzzyrock.aopdemo.dao.AccountDAO.findAccounts(..))",

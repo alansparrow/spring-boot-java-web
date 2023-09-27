@@ -2,12 +2,11 @@ package com.fuzzyrock.aopdemo;
 
 import com.fuzzyrock.aopdemo.dao.AccountDAO;
 import com.fuzzyrock.aopdemo.dao.MembershipDAO;
+import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import java.util.List;
 
 @SpringBootApplication
 public class AopdemoApplication {
@@ -20,8 +19,24 @@ public class AopdemoApplication {
   public CommandLineRunner commandLineRunner(AccountDAO accountDAO, MembershipDAO membershipDAO) {
     return runner -> {
       //      demoTheBeforeAdvice(accountDAO, membershipDAO);
-      demoTheAfterReturningAdvice(accountDAO);
+      //      demoTheAfterReturningAdvice(accountDAO);
+      demoTheAfterThrowingAdvice(accountDAO);
     };
+  }
+
+  private void demoTheAfterThrowingAdvice(AccountDAO accountDAO) {
+    List<Account> accounts = null;
+
+    try {
+      boolean tripWire = true;
+      accounts = accountDAO.findAccounts(tripWire);
+    } catch (Exception e) {
+      System.out.println("Main program: " + e);
+    }
+
+    System.out.println("Main program: ");
+    System.out.println(accounts);
+    System.out.println("\n");
   }
 
   private void demoTheAfterReturningAdvice(AccountDAO accountDAO) {
