@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AccountDAOImpl implements AccountDAO {
   @Override
-  public boolean addAccount(Account account) {
-    System.out.println(getClass() + ": adding an account " + account);
+  public boolean addAccount(Account account, boolean isAdmin) {
+    System.out.println(getClass() + ": adding an account " + account + " isAdmin: " + isAdmin);
     return true;
   }
 }
